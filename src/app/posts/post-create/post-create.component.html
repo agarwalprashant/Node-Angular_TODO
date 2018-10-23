@@ -1,0 +1,50 @@
+<!-- for getting data of the textarea element 2 ways 
+1. make use of template reference variables
+2. two way data binding
+-->
+
+
+<!-- <textarea rows="6" [value]="newPost" #postInput>
+
+</textarea> -->
+<!-- <mat-card>
+
+    <mat-form-field>
+        <input type="text" matInput [(ngModel)]="enteredTitle">
+    </mat-form-field>
+
+    <mat-form-field>
+        <textarea placeholder="Create your post here" matInput (input)="some()" [ngClass]="{paintRed: isColorShown}"
+            [attr.rows]="numberOfRows" [(ngModel)]="enteredContent">
+
+
+
+        </textarea>
+    </mat-form-field>
+    <button color="green" mat-raised-button (click)="onAddPost()">Save Post</button>
+    <button color="primary" mat-raised-button [disabled]="isTweetButtonDisabled">Tweet</button>
+</mat-card> -->
+
+
+
+<mat-card>
+    <form (submit)="onAddPost(postForm)" #postForm="ngForm">
+        <mat-form-field>
+            <input placeholder="Post Title" type="text" matInput name="title" ngModel required #title="ngModel">
+            <mat-error *ngIf="title.invalid">Please Enter a post title</mat-error>
+        </mat-form-field>
+
+        <mat-form-field>
+            <textarea required placeholder="Post Content" matInput (input)="checkForTweetLength()" [ngClass]="{paintRed: isColorShown}"
+                [attr.rows]="numberOfRows" name="content" ngModel #content="ngModel">
+
+
+                </textarea>
+            <mat-error *ngIf="content.invalid">Please Enter  post content</mat-error>
+
+        </mat-form-field>
+        <button color="green" mat-raised-button type="submit">Save Post</button>
+        <button color="primary" mat-raised-button [disabled]="isTweetButtonDisabled">Tweet</button>
+    </form>
+    
+</mat-card>
