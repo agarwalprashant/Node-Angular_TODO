@@ -28,15 +28,15 @@
 
 
 <mat-card>
-    <form (submit)="onAddPost(postForm)" #postForm="ngForm">
+    <form (submit)="onSavePost(postForm)" #postForm="ngForm">
         <mat-form-field>
-            <input placeholder="Post Title" type="text" matInput name="title" ngModel required #title="ngModel">
+            <input placeholder="Post Title" type="text" matInput name="title" [ngModel]="post.title" required #title="ngModel">
             <mat-error *ngIf="title.invalid">Please Enter a post title</mat-error>
         </mat-form-field>
 
         <mat-form-field>
             <textarea required placeholder="Post Content" matInput (input)="checkForTweetLength()" [ngClass]="{paintRed: isColorShown}"
-                [attr.rows]="numberOfRows" name="content" ngModel #content="ngModel">
+                [attr.rows]="numberOfRows" name="content" [ngModel] = "post.content" #content="ngModel">
 
 
                 </textarea>

@@ -43,7 +43,7 @@ app.use((req, res, next) => {
   );
   res.setHeader(
     "Access-Control-Allow-Methods",
-    "GET,POST,PATCH,DELETE,OPTIONS"
+    "GET,POST,PATCH,DELETE,PUT,OPTIONS"
   );
 
   next();
@@ -120,6 +120,24 @@ app.delete("/api/posts/:id", function(req, res, next) {
     // }, 5000);
   });
 });
+
+// two methods we can use to update content put(put the new resource and completely remove the old one with the new data) 
+// or  patch(to update a existing resource with new values).Its up to you how you want to handle this.
+app.put("/api/posts/:id",(req,res,next) => {
+  const post = new Post({
+    _id:req.body.id,
+    title:req.body.title,
+    content:req.body.content,
+
+  });
+  // just be aware we got this  MongoError: Performing an update on the path '_id' would modify the immutable field '_id'
+  Post.updateOne({_id:req.params.id},post)
+    .then((result => {
+      console.log(result);
+      res.status(200).json({message:'Update Successdul!'});
+    }))
+    
+})
 
 // here we are exporting the entire express app with all the middlewares attached to the express app variable
 module.exports = app;

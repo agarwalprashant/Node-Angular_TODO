@@ -89,6 +89,19 @@ export class PostsService {
       })
   }
 
+  updatePost(id:string,title:string,content:string){
+    const post:Post = {id:id,title:title,content:content};
+    // now we need to have a backend route to send this request
+    this.http.put('http://localhost:5000/api/posts/' + id,post)
+      .subscribe((response) => {
+        console.log(response);
+      })
+  }
+
+  getPost(id:string){
+    return {...this.posts.find(p => p.id === id)};
+  }
+
 
 
   // just checking the checkout command
