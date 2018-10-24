@@ -1,1 +1,14 @@
-<mat-toolbar color="primary">My Messages</mat-toolbar>
+<mat-toolbar color="primary">
+    <span>
+        <a routerLink="/">My Messages</a>    
+    </span>
+    <ul>
+         <!-- clicks on this link are captured by angular router  -->
+        <!-- so that default  behaviour of link ie sending a http request can be avoided  -->
+        <!-- and just re-render the page that we try to visit  -->
+        <li routerLink="/create">
+            New Post
+        </li>
+    </ul>
+
+</mat-toolbar>
