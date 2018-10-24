@@ -10,10 +10,10 @@ const mongoose = require("mongoose");
 // var MongoClient = require('mongodb').MongoClient;
 
 // zxcvbnm cZR80CZYc0JBrOn6 nLldCBIAHFYlf46V
-// prashant nb6d81V8rFuzy9B4 TCz0X6i5pQXEQzUA
+// prashant nb6d81V8rFuzy9B4 TCz0X6i5pQXEQzUA 2qDSoGewW0eBkw10
 mongoose
   .connect(
-    "mongodb+srv://prashant:TCz0X6i5pQXEQzUA@cluster0-dwndg.mongodb.net/test?retryWrites=true"
+    "mongodb+srv://prashant:2qDSoGewW0eBkw10@cluster0-dwndg.mongodb.net/test?retryWrites=true"
   )
   .then(() => {
     console.log("Connected to database");
@@ -60,15 +60,12 @@ app.post("/api/posts", (req, res, next) => {
 
   // also notice that the name of the collection(table) where our document (record) is stored is the plural case
   // of the name of the model that we created(Post -> posts() all lowercaseks)
-  post.save()
-    .then(createdPost => {
-      res.status(201).json({
-        message: "Post added successfully",
-        postId:createdPost._id
-      }); // 201 means everything was okk and a new resource was created
-    });
-
-  
+  post.save().then(createdPost => {
+    res.status(201).json({
+      message: "Post added successfully",
+      postId: createdPost._id
+    }); // 201 means everything was okk and a new resource was created
+  });
 });
 
 // the last argument to this use function is the callback function which is going to handle our  requestAnimationFrame
@@ -117,6 +114,10 @@ app.delete("/api/posts/:id", function(req, res, next) {
   Post.deleteOne({ _id: req.params.id }).then(result => {
     console.log("promise", result);
     res.status(200).json({ message: "Post deleted!" });
+
+    // setTimeout(() => {
+    //   res.status(200).json({ message: "Post deleted!" });
+    // }, 5000);
   });
 });
 
