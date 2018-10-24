@@ -2,12 +2,14 @@
     <span>
         <a routerLink="/">My Messages</a>    
     </span>
+    <span class="spacer"></span>
     <ul>
          <!-- clicks on this link are captured by angular router  -->
         <!-- so that default  behaviour of link ie sending a http request can be avoided  -->
         <!-- and just re-render the page that we try to visit  -->
-        <li routerLink="/create">
-            New Post
+        <li>
+            <!-- if the route this link leads to is the currently active route routerLinkActive will apply the specified class here mat-accent -->
+            <a routerLink="/create" routerLinkActive="mat-accent" mat-button> New Post</a> 
         </li>
     </ul>
 
