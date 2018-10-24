@@ -139,5 +139,18 @@ app.put("/api/posts/:id",(req,res,next) => {
     
 })
 
+
+app.get('/api/posts/:id',(req,res,next) => {
+  Post.findById(req.params.id)
+    .then(post => {
+      if(post){
+        res.status(200).json(post);
+      } else {
+        return res.status(404).json({message:'Post not found'});
+
+      }
+    })
+});
+
 // here we are exporting the entire express app with all the middlewares attached to the express app variable
 module.exports = app;
